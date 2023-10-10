@@ -3,6 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+//custom components
+import withAuthentication from './withAuthentication';
+import Home from './Home';
+import Login from './Login';
+import UserComponent from './UserComponent';
+//these are imported for react-router
+
+
 function App() {
   const [count, setCount] = useState(0)
 

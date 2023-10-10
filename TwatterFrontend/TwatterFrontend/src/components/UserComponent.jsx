@@ -1,0 +1,16 @@
+import React from 'react'
+import { useParams } from 'react-router'
+import withAuthentication from './AuthenticationComponent'
+
+// mY nAmE mIcAh WrItE uR fUnCtIoNs RiGhT
+const UserProfile = ({ user }) => {
+	const { userID } = useParams()
+
+	return <>
+		<h1>Welcome, {user.username}!</h1>
+	</>
+}
+
+export default withAuthentication(UserProfile)
+
+

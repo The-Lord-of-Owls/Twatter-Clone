@@ -1,0 +1,9 @@
+import React from 'react'
+
+const Tweet = () => {
+	return <>
+		<h2>Tweet</h2>
+	</>
+}
+
+export default Tweet
