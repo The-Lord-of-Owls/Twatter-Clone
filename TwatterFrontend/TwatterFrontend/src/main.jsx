@@ -16,6 +16,7 @@ import UserProfile from './components/UserComponent'
 
 //CSS/SCSS stuff
 import './index.css'
+import './styles/main.scss'
 
 const router = createBrowserRouter([
 	{
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
 		path: '/:userID',
 		element: <UserProfile />
 	},
-	{ 
+	{
 		path: '/login',
 		element: <Login />
 	},

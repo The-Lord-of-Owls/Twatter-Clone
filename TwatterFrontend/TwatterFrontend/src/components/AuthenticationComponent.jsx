@@ -13,15 +13,14 @@ const withAuthentication = (WrappedComponent) => {
 		}, [])
 
 		return <>
-				    {user ? (
-					    // Render the wrapped component with user data
-					    <WrappedComponent user={user} {...props} />
-				    ) : (
-					    // You can render a loading spinner or an authentication prompt here
-					    <p>Loading...</p>
-				    )}
-			    </>
-
+			{user ? (
+				// Render the wrapped component with user data
+				<WrappedComponent user={user} {...props} />
+			) : (
+				// You can render a loading spinner or an authentication prompt here
+				<p>Loading...</p>
+			)}
+		</>
 	}
 }
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import withAuthentication from './AuthenticationComponent'
 
+import '../styles/home.scss'
+
 const Home = ({ user }) => {
 	return <>
 		<h1>Welcome, {user.username}!</h1>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import '../styles/login.scss'
+
 const Login = ({ onLogin }) => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')

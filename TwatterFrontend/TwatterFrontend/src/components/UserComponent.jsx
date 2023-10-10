@@ -2,6 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router'
 import withAuthentication from './AuthenticationComponent'
 
+import '../styles/user.scss'
+
 // mY nAmE mIcAh WrItE uR fUnCtIoNs RiGhT
 const UserProfile = ({ user }) => {
 	const { userID } = useParams()
