@@ -3,6 +3,9 @@ import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
 import axios from 'axios'
+
+import Feed from './FeedComponent'
+
 import '../styles/user.scss'
 
 // mY nAmE mIcAh WrItE uR fUnCtIoNs RiGhT
@@ -40,19 +43,19 @@ export default function UserProfile() {
 
 				userInfo.fullName		= fullName || username
 				userInfo.profileImage	= profileImage || "default"
-				userInfo.followers		= followers || null
-				userInfo.following		= following || null
+				userInfo.followers		= followers || []
+				userInfo.following		= following || []
 				userInfo.birthdate		= birthdate || null
 				userInfo.aboutMe		= aboutMe || null
-				userInfo.posts			= posts || null
+				userInfo.posts			= posts || []
 			} else {
 				userInfo.fullName		= 'User does not exist'
 				userInfo.profileImage	=  "default"
-				userInfo.followers		= null
-				userInfo.following		= null
+				userInfo.followers		= []
+				userInfo.following		= []
 				userInfo.birthdate		= null
 				userInfo.aboutMe		= null
-				userInfo.posts			= null
+				userInfo.posts			= []
 			}
 
 			setUserInfo( userInfo )
@@ -60,25 +63,25 @@ export default function UserProfile() {
 		} )
 	}, [])
 
-
-	//profile info
-		//profile image, username, followers, following, bio
-	//Feed
-		//tweet
-			//user profile, name, like/repost, text, ect
-
 	return <>
 		{ userInfo.loading ? <h1>Loading profile!</h1> :
-			(username === userName) ? <h1>Viewing our own profile</h1> :
-				<h1>Viewing {userInfo.fullName}'s profile!</h1>
-		}
+			<>
+				<div className='user-bio'>
+					<img src={userInfo.profileImage} alt="user profile image" className='user-profile-image'/>
+					<div className='user-display-name'>{userInfo.fullName}</div>
 
-		{userInfo.followers}
-		{userInfo.following}
-		{userInfo.birthdate}
-		{userInfo.aboutMe}
-		{userInfo.profileImage}
-		{userInfo.posts}
+					<div className='user-handle'>{username}{ userInfo.birthdate ? <> - ({userInfo.birthdate})</> : null }</div>
+
+					<div className='user-aboutme'>{userInfo.aboutMe || ""}</div>
+
+					<div className='user-follows'>Followers: {userInfo.followers.length} Following: {userInfo.following.length}</div>
+
+					{(username === userName) ? null : <button>Follow/Unfollow</button>}
+				</div>
+
+				<Feed className='user-feed' tweets={userInfo.posts} />
+			</>
+		}
 	</>
 }
 
