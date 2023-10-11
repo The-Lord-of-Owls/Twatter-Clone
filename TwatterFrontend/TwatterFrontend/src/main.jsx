@@ -15,7 +15,6 @@ import Register from './components/RegisterComponent'
 import UserProfile from './components/UserComponent'
 
 //CSS/SCSS stuff
-import './index.css'
 import './styles/main.scss'
 
 const router = createBrowserRouter([
@@ -24,7 +23,7 @@ const router = createBrowserRouter([
 		element: <Home />
 	},
 	{
-		path: '/:userID',
+		path: '/:username',
 		element: <UserProfile />
 	},
 	{

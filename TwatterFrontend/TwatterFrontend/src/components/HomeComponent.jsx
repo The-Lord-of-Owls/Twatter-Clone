@@ -6,6 +6,10 @@ export default function Home() {
 	const user = useSelector( state => state.user )
 	const userFullName = useMemo( () => user.fullName, [user.fullName])
 
+	// Navbar
+	// feed
+		// tweets
+
 	return <>
 		<h1>Welcome, {userFullName}!</h1>
 		<p>This is the home page for authenticated users.</p>
