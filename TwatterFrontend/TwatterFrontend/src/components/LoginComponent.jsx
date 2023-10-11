@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 import '../styles/login.scss'
 
-const Login = () => {
+export default function Login() {
 	const [email, setemail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -72,4 +72,4 @@ const Login = () => {
 	)
 }
 
-export default Login
+
