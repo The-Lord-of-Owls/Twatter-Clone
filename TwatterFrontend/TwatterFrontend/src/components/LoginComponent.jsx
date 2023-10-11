@@ -1,19 +1,52 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
+import { useDispatch } from 'react-redux'
+import { setUserInfo } from '../redux/userSlice'
+
+import { useNavigate } from 'react-router-dom'
 
 import '../styles/login.scss'
 
-const Login = ({ onLogin }) => {
-	const [username, setUsername] = useState('')
+const Login = () => {
+	const [email, setemail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	// todo more type checking.
 	const handleLogin = (e) => {
 		e.preventDefault()
 
-		if (!username || !password)
+		if (!email || !password)
 			return
 
-		onLogin(username)
+		axios.post( 'http://localhost:3000/login', { email: email, password: password } ).then( res => {
+			let { success, error } = res.data
+
+			if ( success ) {
+				let userInfo = res.data.user
+				console.log( userInfo )
+
+				//store in token and state management
+				dispatch( setUserInfo({
+					loggedIn: success,
+					username: userInfo.username,
+					fullName: userInfo.fullName
+				}) )
+
+				navigate( '/' )
+			} else {
+				switch ( error ) {
+					//Error codes
+					case 100:
+						console.error( "Login info mismatch or user does not exist!" )
+
+						break
+				}
+			}
+		} )
 	}
 
 	//use style with this later
@@ -23,22 +56,14 @@ const Login = ({ onLogin }) => {
 			<form onSubmit={handleLogin}>
 				<div>
 					<label>
-						Username:
-						<input
-							type="text"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-						/>
+						Email:
+						<input type="text" value={email} onChange={(e) => setemail(e.target.value)} minLength="5" maxLength="32" />
 					</label>
 				</div>
 				<div>
 					<label>
 						Password:
-						<input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						/>
+						<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="8" maxLength="32" />
 					</label>
 				</div>
 				<button type="submit">Login</button>

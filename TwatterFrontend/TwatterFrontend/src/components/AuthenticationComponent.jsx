@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react'
-
-// Simulate authentication status
-const isAuthenticated = true
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const withAuthentication = (WrappedComponent) => {
 	return function WithAuthentication(props) {
-		const [user, setUser] = useState(null)
-
-		useEffect(() => {
-			// Simulate an auth check
-			setUser(isAuthenticated ? { username: 'test' } : null)
-		}, [])
+		const user = useSelector( state => state.user )
+		const userLoggedIn = useMemo( () => user.loggedIn, [user.loggedIn])
+		const navigate = useNavigate()
 
 		return <>
-			{user ? (
+			{userLoggedIn ? (
 				// Render the wrapped component with user data
-				<WrappedComponent user={user} {...props} />
-			) : (
-				// You can render a loading spinner or an authentication prompt here
-				<p>Loading...</p>
-			)}
+				<WrappedComponent {...props} />
+			) : navigate( '/login' ) } 
 		</>
 	}
 }

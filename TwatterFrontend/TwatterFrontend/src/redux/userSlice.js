@@ -6,20 +6,22 @@ export const userSlice = createSlice({
 	reducers: {
 		setUserInfo: (state, action) => {
 			if (action.payload.loggedIn) {
-				state.loggedIn = action.payload.loggedIn;
+				console.log("user is now logged in")
+				state.loggedIn = action.payload.loggedIn
 				state.username = action.payload.username
-				state.handle = action.payload.handle
+				state.fullName = action.payload.fullName
 			} else {
+				console.log("User is now logged out")
 				state.loggedIn = false
 				state.username = ""
-				state.handle = ""
+				state.fullName = ""
 			}
 		}
 	}
 })
 
 
-export const { setLoggedIn } = userSlice.actions
+export const { setUserInfo } = userSlice.actions
 export default userSlice.reducer
 
 

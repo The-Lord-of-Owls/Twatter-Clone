@@ -7,7 +7,10 @@ const loginRoutes = require('./Routes/LoginRoutes');
 const userRoutes = require('./Routes/UserRoutes');
 const feedRoutes = require('./Routes/FeedRoutes');
 
-const mongooseURL = 'mongodb+srv://Gabe01:Secquone01!@testcluster.fj0jf.mongodb.net/PadawanTwatter?retryWrites=true&w=majority';
+//Temporarily swapped
+//const mongooseURL = 'mongodb+srv://Gabe01:Secquone01!@testcluster.fj0jf.mongodb.net/PadawanTwatter?retryWrites=true&w=majority';
+const mongooseURL = 'mongodb+srv://themicah7777:QrVWEFrZhtRl2ylY@twatter-clone.kuqwluf.mongodb.net/?retryWrites=true&w=majority';
+
 
 app.use(  
   cors({

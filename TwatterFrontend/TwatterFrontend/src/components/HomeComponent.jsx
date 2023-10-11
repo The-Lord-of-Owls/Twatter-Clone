@@ -1,13 +1,15 @@
-import React from 'react'
-import withAuthentication from './AuthenticationComponent'
-
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import '../styles/home.scss'
 
-const Home = ({ user }) => {
+export default function Home() {
+	const user = useSelector( state => state.user )
+	const userFullName = useMemo( () => user.fullName, [user.fullName])
+
 	return <>
-		<h1>Welcome, {user.username}!</h1>
+		<h1>Welcome, {userFullName}!</h1>
 		<p>This is the home page for authenticated users.</p>
 	</>
 }
 
-export default withAuthentication(Home)
+
