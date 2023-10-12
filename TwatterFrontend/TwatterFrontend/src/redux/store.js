@@ -1,14 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { persistReducer, persistStore } from 'redux-persist'
+import thunk from 'redux-thunk'
 
 //Import Slices
-import userSlice from './userSlice'
+import userSlice, { userPersistConfig } from './userSlice'
 
-const store = configureStore({
-	reducer: {
-		user: userSlice
-	}
+export const store = configureStore({
+	reducer: combineReducers({
+		user: persistReducer( userPersistConfig, userSlice),
+	}),
+	devTools: process.env.NODE_ENV !== 'production',
+	middleware: [thunk]
 })
 
-export default store
+export const persistor = persistStore(store)
 
 

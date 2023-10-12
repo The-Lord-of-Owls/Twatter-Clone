@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/login.scss'
 
 export default function Login() {
-	const [email, setemail] = useState('')
-	const [password, setPassword] = useState('')
+	const [email, setemail] = useState( '' )
+	const [password, setPassword] = useState( '' )
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
